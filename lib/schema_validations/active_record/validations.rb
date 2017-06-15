@@ -119,7 +119,7 @@ module SchemaValidations
             end
 
             # NOT NULL constraints
-            if column.required_on
+            if column.required_on &&  !column.has_default?
               if datatype == :boolean
                 validate_logged :validates_inclusion_of, name, :in => [true, false], :message => :blank
               else
