@@ -160,7 +160,7 @@ module SchemaValidations
             next unless column
 
             # NOT NULL constraints
-            validate_logged :validates_presence_of, association.name if column.required_on
+            validate_logged :validates_presence_of, association.name if column.required_on &&  !column.has_default?
 
             # UNIQUE constraints
             add_uniqueness_validation(column) if column.unique?
